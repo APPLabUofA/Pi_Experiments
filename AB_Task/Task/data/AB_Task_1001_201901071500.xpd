@@ -1,0 +1,29 @@
+#Expyriment 0.9.0 (Python 2.7.13), .xpd-file, coding: UTF-8
+#date: Mon Jan 07 2019 15:00:08
+#--EXPERIMENT INFO
+#e mainfile: AB_Task.py
+#e sha1: 3cd92b
+#e modules: 
+#e Experiment: Blinking_Magnitude
+#e no between subject factors
+#e Block 0: Block1
+#e     block factors: 
+#e     n trials: 224
+#e     trial factors: T1_pos = [3, 4, 5, 6, 7]
+#e                    lag = [3, 7]
+#e                    T2 = [1, 2, 3, 4, 6, 7, 8, 9]
+#e                    T1 = [1, 2, 3, 4, 6, 7, 8, 9]
+#e                    
+#--SUBJECT INFO
+#s id: 1001
+subject_id,trial_cnt,T1_Position,Time_lag,T1,T2,Difference,T1_Resp,T2_Resp,RT,Correct,Reversed
+1001,-1,6,3,1,2,1,1,2,10874,1,0
+1001,-1,4,7,4,8,4,4,5,10416,0,0
+1001,-1,7,7,2,3,1,1,3,10552,0,0
+1001,-1,3,3,9,3,6,9,3,10614,1,0
+1001,-1,3,7,2,7,5,1,2,10595,0,0
+1001,-1,5,7,8,7,1,5,5,10689,0,0
+1001,-1,4,7,6,7,1,7,8,10659,0,0
+1001,-1,7,7,1,6,5,1,9,10550,0,0
+1001,-1,4,3,3,9,6,6,4,10583,0,0
+1001,-1,7,3,6,4,2,2,8,10797,0,0

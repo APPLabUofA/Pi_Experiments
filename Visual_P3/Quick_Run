@@ -1,0 +1,27 @@
+------------------------------------------------
+Terminal 1) Connect to Muse
+------------------------------------------------
+
+cd /home/pi/research_experiments/Experiments/Packages/muse-lsl-master
+sudo python muse-lsl-connect.py --name Muse-1E65
+
+------------------------------------------------
+Terminal 2) Visual EEG Data (Close Terminal Once Done)
+------------------------------------------------
+
+cd /home/pi/research_experiments/Experiments/Packages/muse-lsl-master
+sudo python lsl-viewer.py
+
+------------------------------------------------
+Terminal 3) Start Recording EEG Data
+------------------------------------------------
+
+cd /home/pi/research_experiments/Experiments/Packages/muse-lsl-master
+sudo python lsl-record_muse.py "001" "Muse" "lsl_visual_p3" "Visual_P3"
+
+------------------------------------------------
+Terminal 4) Run Experiment
+------------------------------------------------
+
+cd /home/pi/research_experiments/Experiments/Visual_P3/Task
+sudo python Visual_P3.py "001" "Muse" "visual_p3" "Visual_P3"

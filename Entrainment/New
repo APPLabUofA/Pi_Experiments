@@ -1,0 +1,27 @@
+cd /home/pi/Experiments/Packages/muse-lsl-master
+sudo python muse-lsl-N170.py --name Muse-02B8
+
+975A
+02B8
+
+------------------------------------------------
+
+cd /home/pi/Experiments/Entrainment
+sudo python lsl-record_muse.py
+
+------------------------------------------------
+
+cd /home/pi/Experiments/Entrainment
+sudo python Entrain_Task.py
+
+cd /home/pi/Experiments/Entrainment
+sudo python Entrain_Task_psychopy.py
+
+cd /home/pi/Experiments/Entrainment
+sudo python Entrain_Task_face_psychopy.py
+
+cd /home/pi/Experiments/Entrainment
+sudo python Entrain_Task_trigs_only.py
+
+cd /home/pi/Experiments/Entrainment
+sudo python Stimulus_Timing_Tests_psychopy.py

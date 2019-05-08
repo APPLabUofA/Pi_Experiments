@@ -1,0 +1,360 @@
+#Expyriment 0.9.0 (Python 2.7.13), .xpe-file, coding: UTF-8
+#date: Mon Jan 07 2019 15:13:16
+#sha1: 60ddbb
+#modules: 
+#display: size=(1920, 1080), window_mode=False, open_gl=2
+#os: ('Linux', 'raspberrypi', '4.14.79-v7+', '#1159 SMP Sun Nov 4 17:50:20 GMT 2018', 'armv7l', '')
+Time,Type,Event,Value,Detail,Detail2
+186251,design,log,
+#design: #exp: Blinking_Magnitude
+#design: #dvn: trial_cnt,T1_Position,Time_lag,T1,T2,Difference,T1_Resp,T2_Resp,RT,Correct,Reversed
+#design: block_cnt,block_id,trial_cnt,trial_id,T1_pos,lag,T2,T1
+#design: 0,0,0,219,5,7,3,9
+#design: 0,0,1,123,6,7,7,2
+#design: 0,0,2,215,7,7,7,8
+#design: 0,0,3,149,4,7,3,7
+#design: 0,0,4,160,6,7,9,8
+#design: 0,0,5,180,6,7,8,2
+#design: 0,0,6,60,4,3,7,1
+#design: 0,0,7,96,4,3,8,7
+#design: 0,0,8,79,7,3,3,4
+#design: 0,0,9,182,7,7,1,3
+#design: 0,0,10,177,3,7,4,2
+#design: 0,0,11,80,4,3,6,4
+#design: 0,0,12,83,6,3,9,4
+#design: 0,0,13,36,6,3,2,7
+#design: 0,0,14,200,5,7,7,6
+#design: 0,0,15,119,3,7,1,2
+#design: 0,0,16,0,3,3,2,1
+#design: 0,0,17,9,7,3,4,2
+#design: 0,0,18,155,4,7,2,8
+#design: 0,0,19,133,6,7,1,4
+#design: 0,0,20,10,3,3,6,2
+#design: 0,0,21,194,7,7,8,4
+#design: 0,0,22,197,4,7,2,6
+#design: 0,0,23,146,7,7,9,6
+#design: 0,0,24,196,5,7,1,6
+#design: 0,0,25,64,3,3,3,2
+#design: 0,0,26,147,3,7,1,7
+#design: 0,0,27,34,3,3,9,6
+#design: 0,0,28,1,6,3,3,1
+#design: 0,0,29,163,3,7,3,9
+#design: 0,0,30,171,7,7,6,1
+#design: 0,0,31,17,7,3,6,3
+#design: 0,0,32,6,6,3,9,1
+#design: 0,0,33,152,6,7,8,7
+#design: 0,0,34,184,6,7,4,3
+#design: 0,0,35,164,4,7,4,9
+#design: 0,0,36,47,3,3,7,8
+#design: 0,0,37,50,3,3,2,9
+#design: 0,0,38,55,3,3,8,9
+#design: 0,0,39,58,7,3,4,1
+#design: 0,0,40,127,3,7,2,3
+#design: 0,0,41,173,5,7,8,1
+#design: 0,0,42,117,3,7,8,1
+#design: 0,0,43,35,4,3,1,7
+#design: 0,0,44,37,4,3,3,7
+#design: 0,0,45,41,4,3,9,7
+#design: 0,0,46,19,4,3,8,3
+#design: 0,0,47,20,6,3,9,3
+#design: 0,0,48,157,4,7,4,8
+#design: 0,0,49,217,7,7,1,9
+#design: 0,0,50,93,3,3,3,7
+#design: 0,0,51,128,7,7,4,3
+#design: 0,0,52,14,5,3,1,3
+#design: 0,0,53,130,7,7,7,3
+#design: 0,0,54,72,7,3,4,3
+#design: 0,0,55,101,4,3,4,8
+#design: 0,0,56,191,5,7,3,4
+#design: 0,0,57,3,3,3,6,1
+#design: 0,0,58,49,6,3,1,9
+#design: 0,0,59,89,4,3,8,6
+#design: 0,0,60,104,5,3,9,8
+#design: 0,0,61,62,6,3,9,1
+#design: 0,0,62,162,4,7,2,9
+#design: 0,0,63,74,3,3,7,3
+#design: 0,0,64,111,3,3,8,9
+#design: 0,0,65,138,4,7,8,4
+#design: 0,0,66,86,7,3,3,6
+#design: 0,0,67,97,7,3,9,7
+#design: 0,0,68,99,6,3,2,8
+#design: 0,0,69,67,3,3,7,2
+#design: 0,0,70,141,6,7,2,6
+#design: 0,0,71,57,5,3,3,1
+#design: 0,0,72,121,4,7,4,2
+#design: 0,0,73,135,7,7,3,4
+#design: 0,0,74,142,4,7,3,6
+#design: 0,0,75,199,5,7,4,6
+#design: 0,0,76,73,4,3,6,3
+#design: 0,0,77,154,6,7,1,8
+#design: 0,0,78,66,3,3,6,2
+#design: 0,0,79,131,7,7,8,3
+#design: 0,0,80,114,3,7,4,1
+#design: 0,0,81,168,7,7,2,1
+#design: 0,0,82,170,7,7,4,1
+#design: 0,0,83,103,3,3,7,8
+#design: 0,0,84,81,6,3,7,4
+#design: 0,0,85,158,3,7,6,8
+#design: 0,0,86,92,4,3,2,7
+#design: 0,0,87,13,4,3,9,2
+#design: 0,0,88,7,5,3,1,2
+#design: 0,0,89,169,5,7,3,1
+#design: 0,0,90,90,3,3,9,6
+#design: 0,0,91,195,6,7,9,4
+#design: 0,0,92,205,4,7,3,7
+#design: 0,0,93,210,3,7,1,8
+#design: 0,0,94,21,5,3,1,4
+#design: 0,0,95,32,7,3,7,6
+#design: 0,0,96,91,4,3,1,7
+#design: 0,0,97,202,7,7,9,6
+#design: 0,0,98,183,7,7,2,3
+#design: 0,0,99,201,5,7,8,6
+#design: 0,0,100,25,3,3,7,4
+#design: 0,0,101,137,7,7,7,4
+#design: 0,0,102,153,3,7,9,7
+#design: 0,0,103,98,4,3,1,8
+#design: 0,0,104,213,5,7,4,8
+#design: 0,0,105,88,3,3,7,6
+#design: 0,0,106,56,7,3,2,1
+#design: 0,0,107,95,4,3,6,7
+#design: 0,0,108,214,3,7,6,8
+#design: 0,0,109,179,7,7,7,2
+#design: 0,0,110,40,7,3,8,7
+#design: 0,0,111,63,5,3,1,2
+#design: 0,0,112,124,5,7,8,2
+#design: 0,0,113,52,7,3,4,9
+#design: 0,0,114,161,7,7,1,9
+#design: 0,0,115,207,5,7,6,7
+#design: 0,0,116,190,6,7,2,4
+#design: 0,0,117,165,5,7,6,9
+#design: 0,0,118,204,4,7,2,7
+#design: 0,0,119,212,4,7,3,8
+#design: 0,0,120,185,4,7,6,3
+#design: 0,0,121,42,4,3,1,8
+#design: 0,0,122,192,7,7,6,4
+#design: 0,0,123,125,3,7,9,2
+#design: 0,0,124,221,6,7,6,9
+#design: 0,0,125,78,3,3,2,4
+#design: 0,0,126,54,6,3,7,9
+#design: 0,0,127,223,4,7,8,9
+#design: 0,0,128,53,3,3,6,9
+#design: 0,0,129,76,5,3,9,3
+#design: 0,0,130,27,5,3,9,4
+#design: 0,0,131,140,5,7,1,6
+#design: 0,0,132,33,5,3,8,6
+#design: 0,0,133,175,3,7,1,2
+#design: 0,0,134,222,6,7,7,9
+#design: 0,0,135,45,3,3,4,8
+#design: 0,0,136,87,4,3,4,6
+#design: 0,0,137,4,7,3,7,1
+#design: 0,0,138,46,6,3,6,8
+#design: 0,0,139,102,6,3,6,8
+#design: 0,0,140,132,4,7,9,3
+#design: 0,0,141,2,5,3,4,1
+#design: 0,0,142,172,3,7,7,1
+#design: 0,0,143,220,4,7,4,9
+#design: 0,0,144,151,3,7,6,7
+#design: 0,0,145,120,4,7,3,2
+#design: 0,0,146,186,5,7,7,3
+#design: 0,0,147,189,5,7,1,4
+#design: 0,0,148,31,7,3,4,6
+#design: 0,0,149,208,6,7,8,7
+#design: 0,0,150,198,4,7,3,6
+#design: 0,0,151,82,3,3,8,4
+#design: 0,0,152,69,4,3,9,2
+#design: 0,0,153,28,4,3,1,6
+#design: 0,0,154,126,3,7,1,3
+#design: 0,0,155,216,3,7,9,8
+#design: 0,0,156,77,7,3,1,4
+#design: 0,0,157,22,5,3,2,4
+#design: 0,0,158,105,6,3,1,9
+#design: 0,0,159,26,6,3,8,4
+#design: 0,0,160,5,6,3,8,1
+#design: 0,0,161,75,6,3,8,3
+#design: 0,0,162,143,3,7,4,6
+#design: 0,0,163,94,7,3,4,7
+#design: 0,0,164,218,4,7,2,9
+#design: 0,0,165,51,5,3,3,9
+#design: 0,0,166,68,6,3,8,2
+#design: 0,0,167,181,7,7,9,2
+#design: 0,0,168,150,6,7,4,7
+#design: 0,0,169,112,4,7,2,1
+#design: 0,0,170,122,5,7,6,2
+#design: 0,0,171,115,4,7,6,1
+#design: 0,0,172,134,6,7,2,4
+#design: 0,0,173,113,5,7,3,1
+#design: 0,0,174,136,3,7,6,4
+#design: 0,0,175,65,7,3,4,2
+#design: 0,0,176,106,6,3,2,9
+#design: 0,0,177,70,4,3,1,3
+#design: 0,0,178,108,6,3,4,9
+#design: 0,0,179,84,7,3,1,6
+#design: 0,0,180,178,3,7,6,2
+#design: 0,0,181,176,6,7,3,2
+#design: 0,0,182,174,4,7,9,1
+#design: 0,0,183,145,6,7,8,6
+#design: 0,0,184,139,5,7,9,4
+#design: 0,0,185,61,4,3,8,1
+#design: 0,0,186,166,4,7,7,9
+#design: 0,0,187,23,5,3,3,4
+#design: 0,0,188,38,5,3,4,7
+#design: 0,0,189,148,6,7,2,7
+#design: 0,0,190,206,7,7,4,7
+#design: 0,0,191,193,3,7,7,4
+#design: 0,0,192,203,7,7,1,7
+#design: 0,0,193,8,6,3,3,2
+#design: 0,0,194,156,6,7,3,8
+#design: 0,0,195,24,5,3,6,4
+#design: 0,0,196,109,7,3,6,9
+#design: 0,0,197,188,6,7,9,3
+#design: 0,0,198,29,3,3,2,6
+#design: 0,0,199,116,5,7,7,1
+#design: 0,0,200,100,3,3,3,8
+#design: 0,0,201,107,3,3,3,9
+#design: 0,0,202,12,3,3,8,2
+#design: 0,0,203,11,3,3,7,2
+#design: 0,0,204,144,3,7,7,6
+#design: 0,0,205,30,5,3,3,6
+#design: 0,0,206,167,3,7,8,9
+#design: 0,0,207,187,5,7,8,3
+#design: 0,0,208,44,6,3,3,8
+#design: 0,0,209,71,3,3,2,3
+#design: 0,0,210,48,3,3,9,8
+#design: 0,0,211,15,5,3,2,3
+#design: 0,0,212,59,6,3,6,1
+#design: 0,0,213,129,4,7,6,3
+#design: 0,0,214,211,4,7,2,8
+#design: 0,0,215,18,3,3,7,3
+#design: 0,0,216,209,6,7,9,7
+#design: 0,0,217,118,3,7,9,1
+#design: 0,0,218,110,5,3,7,9
+#design: 0,0,219,43,7,3,2,8
+#design: 0,0,220,39,3,3,6,7
+#design: 0,0,221,159,5,7,7,8
+#design: 0,0,222,85,3,3,2,6
+#design: 0,0,223,16,6,3,4,3
+186344,design,logged,
+186345,Experiment,started
+232331,Keyboard,received,32,wait
+232334,Stimulus,presented,0
+238075,Stimulus,presented,1
+239205,Stimulus,presented,2970
+239441,Stimulus,presented,2971
+239675,Stimulus,presented,2972
+239905,Stimulus,presented,2973
+240136,Stimulus,presented,2974
+240357,Stimulus,presented,2975
+240581,Stimulus,presented,2976
+240836,Stimulus,presented,2977
+241058,Stimulus,presented,2978
+241287,Stimulus,presented,2979
+241541,Stimulus,presented,2980
+241761,Stimulus,presented,2981
+241979,Stimulus,presented,2982
+242221,Stimulus,presented,2983
+242447,Stimulus,presented,2984
+242692,Stimulus,presented,2985
+242932,Stimulus,presented,2986
+243160,Stimulus,presented,2987
+243401,Stimulus,presented,0
+246858,Stimulus,presented,4
+250217,Stimulus,presented,4
+253542,Stimulus,presented,4
+256712,Stimulus,presented,5
+256855,Stimulus,presented,5
+257013,Stimulus,presented,5
+257165,TextInput,entered,96
+257175,Data,saved
+257610,Stimulus,presented,5
+261915,Keyboard,received,32,wait
+262338,Stimulus,presented,6
+265835,Keyboard,received,32,wait
+265842,Stimulus,presented,0
+269998,Stimulus,presented,1
+271131,Stimulus,presented,3942
+271348,Stimulus,presented,3943
+271551,Stimulus,presented,3944
+271753,Stimulus,presented,3945
+271971,Stimulus,presented,3946
+272175,Stimulus,presented,3947
+272394,Stimulus,presented,3948
+272600,Stimulus,presented,3949
+272825,Stimulus,presented,3950
+273061,Stimulus,presented,3951
+273297,Stimulus,presented,3952
+273516,Stimulus,presented,3953
+273745,Stimulus,presented,3954
+273984,Stimulus,presented,3955
+274191,Stimulus,presented,3956
+274393,Stimulus,presented,3957
+274612,Stimulus,presented,3958
+274817,Stimulus,presented,3959
+275044,Stimulus,presented,0
+278479,Stimulus,presented,7
+281838,Stimulus,presented,7
+285272,Stimulus,presented,7
+288427,Stimulus,presented,8
+288597,Stimulus,presented,8
+288770,Stimulus,presented,8
+289835,TextInput,entered,93
+289840,Data,saved
+289844,Stimulus,presented,0
+293921,Stimulus,presented,1
+295053,Stimulus,presented,2214
+295255,Stimulus,presented,2215
+295490,Stimulus,presented,2216
+295719,Stimulus,presented,2217
+295930,Stimulus,presented,2218
+296158,Stimulus,presented,2219
+296392,Stimulus,presented,2220
+296634,Stimulus,presented,2221
+296868,Stimulus,presented,2222
+297096,Stimulus,presented,2223
+297336,Stimulus,presented,2224
+297566,Stimulus,presented,2225
+297795,Stimulus,presented,2226
+298027,Stimulus,presented,2227
+298253,Stimulus,presented,2228
+298480,Stimulus,presented,2229
+298701,Stimulus,presented,2230
+298926,Stimulus,presented,2231
+299151,Stimulus,presented,0
+302611,Stimulus,presented,8
+305982,Stimulus,presented,8
+309310,Stimulus,presented,8
+312481,Stimulus,presented,9
+312648,Stimulus,presented,9
+312802,Stimulus,presented,9
+312934,TextInput,entered,87
+312942,Data,saved
+312957,Stimulus,presented,0
+317080,Stimulus,presented,1
+318217,Stimulus,presented,3870
+318445,Stimulus,presented,3871
+318657,Stimulus,presented,3872
+318893,Stimulus,presented,3873
+319134,Stimulus,presented,3874
+319388,Stimulus,presented,3875
+319605,Stimulus,presented,3876
+319808,Stimulus,presented,3877
+320008,Stimulus,presented,3878
+320205,Stimulus,presented,3879
+320433,Stimulus,presented,3880
+320638,Stimulus,presented,3881
+320865,Stimulus,presented,3882
+321066,Stimulus,presented,3883
+321289,Stimulus,presented,3884
+321513,Stimulus,presented,3885
+321736,Stimulus,presented,3886
+321937,Stimulus,presented,3887
+322181,Stimulus,presented,0
+325631,Stimulus,presented,9
+328954,Stimulus,presented,9
+332319,Stimulus,presented,9
+335456,Stimulus,presented,10
+335625,Stimulus,presented,10
+335762,Stimulus,presented,10
+335910,TextInput,entered,41
+335918,Data,saved
+335922,Experiment,ended
+335954,Stimulus,presented,10

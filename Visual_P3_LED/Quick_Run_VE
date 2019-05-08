@@ -1,0 +1,31 @@
+------------------------------------------------
+Terminal 1) Connect to Muse
+------------------------------------------------
+
+source activate eeg_experiments
+cd /home/pi/research_experiments/Experiments/Packages/muse-lsl-master
+sudo /home/pi/miniconda/envs/eeg_experiments/bin/python muse-lsl-connect.py --name Muse-64F4
+
+------------------------------------------------
+Terminal 2) Visual EEG Data (Close Terminal Once Done)
+------------------------------------------------
+
+source activate eeg_experiments
+cd /home/pi/research_experiments/Experiments/Packages/muse-lsl-master
+sudo /home/pi/miniconda/envs/eeg_experiments/bin/python lsl-viewer.py
+
+------------------------------------------------
+Terminal 3) Start Recording EEG Data
+------------------------------------------------
+
+source activate eeg_experiments
+cd /home/pi/research_experiments/Experiments/Packages/muse-lsl-master
+sudo /home/pi/miniconda/envs/eeg_experiments/bin/python lsl-record_muse.py "001" "Muse" "lsl_visual_p3_LED" "Visual_P3_LED"
+
+------------------------------------------------
+Terminal 4) Run Experiment
+------------------------------------------------
+
+source activate eeg_experiments
+cd /home/pi/research_experiments/Experiments/Visual_P3_LED/Task
+sudo /home/pi/miniconda/envs/eeg_experiments/bin/python Visual_P3_LED.py "001" "Muse" "visual_p3_LED" "Visual_P3_LED"

@@ -1,0 +1,6 @@
+with open('Desktop/related_prime.txt') as f:
+lines = f.readlines()
+
+lines = [line.rstrip('\n') for line in open('Desktop/related_prime.txt')]
+
+use zip() to pair/combine lists
