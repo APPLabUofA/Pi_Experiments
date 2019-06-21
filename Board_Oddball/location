@@ -1,0 +1,17 @@
+sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+sudo nano /home/pi/.config/lxsession/LXDE-pi/autostart
+
+
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+@xscreensaver -no-splash
+@lxterminal -e sh -e /home/pi/AutoRun/autorun_exp
+
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+@xscreensaver -no-splash
+@lxterminal -e sh -e /home/pi/Experiments/Outdoor_Visual_Oddball/Autorun_1
+@lxterminal -e sh -e /home/pi/Experiments/Outdoor_Visual_Oddball/Autorun_2
+@lxterminal -e sh -e /home/pi/Experiments/Outdoor_Visual_Oddball/Autorun_3
+@point-rpi
+

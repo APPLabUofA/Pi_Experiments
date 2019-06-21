@@ -1,0 +1,19 @@
+cd /home/pi/Experiments/Packages/muse-lsl-master
+sudo python muse-lsl-chime.py --name Muse-7FCB
+
+#Prototypes#
+7FCB
+6076
+
+#Older Muse Headband#
+
+------------------------------------------------
+
+cd /home/pi/Experiments/Chime_Oddball/LSL_Recorder
+sudo python lsl-record_muse.py
+
+------------------------------------------------
+
+cd /home/pi/Experiments/Chime_Oddball/Task
+sudo python Chime_Oddball_Pygame.py
+

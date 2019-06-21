@@ -1,0 +1,41 @@
+------------------------------------------------
+Terminal 1) Connect to Muse, stream EEG, ACC, and GYRO
+------------------------------------------------
+
+workon muse_experiments_p373
+muselsl stream --name Muse-1E65 --acc --gyro
+
+------------------------------------------------
+Terminal 2) Visual EEG Data (Close Terminal Once Done)
+------------------------------------------------
+
+cd /home/pi/research_experiments/Experiments/Packages/muse-lsl-master
+sudo python lsl-viewer.py
+
+------------------------------------------------
+Terminal 3) Start Recording EEG Data
+------------------------------------------------
+
+workon muse_experiments_p373
+python muselsl record --type EEG --duration 30
+
+------------------------------------------------
+Terminal 4) Start Recording ACC Data
+------------------------------------------------
+
+workon muse_experiments_p373
+python muselsl record --type ACC --duration 30
+
+------------------------------------------------
+Terminal 5) Start Recording GYRO Data
+------------------------------------------------
+
+workon muse_experiments_p373
+python muselsl record --type GYRO --duration 30
+
+------------------------------------------------
+Terminal 6) Run Experiment
+------------------------------------------------
+
+cd /home/pi/research_experiments/Experiments/Baseline_Stroke_Study/Task
+sudo python Baseline_Stroke_Study.py
