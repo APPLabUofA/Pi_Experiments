@@ -1,0 +1,5 @@
+C:\\Users\\User\\ffmpeg-4.1-win64-static\\bin\\ffmpeg.exe -i M:\Data\GoPro_Visor\GoPro_Video\003_setup.MP4 -r 25 -c:v libx264 -b:v 3M -strict -2 M:\Data\GoPro_Visor\Converted_Video\003_setup.avi
+
+# -s 160x90 # in order to change the output resolution
+
+# -c:v libx264 # codec

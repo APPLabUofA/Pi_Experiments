@@ -1,0 +1,4 @@
+C:\\Users\\User\\ffmpeg-4.1-win64-static\\bin\\ffmpeg.exe -i M:\Data\GoPro_Visor\Experiment_1\Video\Original\001_01.MP4 -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate1.ts 
+C:\\Users\\User\\ffmpeg-4.1-win64-static\\bin\\ffmpeg.exe -i M:\Data\GoPro_Visor\Experiment_1\Video\Original\001_02.MP4 -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate2.ts 
+C:\\Users\\User\\ffmpeg-4.1-win64-static\\bin\\ffmpeg.exe -i "concat:intermediate1.ts|intermediate2.ts" -c copy -bsf:a aac_adtstoasc M:\Data\GoPro_Visor\Experiment_1\Video\Converted\001.avi
+

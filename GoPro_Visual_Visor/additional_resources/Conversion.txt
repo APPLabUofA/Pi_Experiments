@@ -1,0 +1,6 @@
+
+C:\\Users\\User\\ffmpeg-4.1-win64-static\\bin\\ffmpeg.exe -i M:\Data\GoPro_Visor\Experiment_1\Pilot_1\GoPro_Videos\Original\GOPR0212.MP4 M:\Data\GoPro_Visor\Experiment_1\Pilot_1\GoPro_Videos\Converted\GOPR0212.avi
+
+ffmpeg -i input1.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate1.ts
+ffmpeg -i input2.mp4 -c copy -bsf:v h264_mp4toannexb -f mpegts intermediate2.ts
+ffmpeg -i "concat:intermediate1.ts|intermediate2.ts" -c copy -bsf:a aac_adtstoasc output.mp4
