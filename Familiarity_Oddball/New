@@ -1,0 +1,5 @@
+with open('/home/pi/Experiments/Familiarity_Oddball/Participant_Number','r') as myfile:
+	data = myfile.read().replace('\n','')
+
+text_file = open("/home/pi/Experiments/Familiarity_Oddball/Parts","r")
+lines = text_file.read().split(',')

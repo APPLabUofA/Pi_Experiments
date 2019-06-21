@@ -1,0 +1,24 @@
+Static IP for the Pi
+
+sudo nano etc/dhcpcd.conf
+# uncomment the following lines
+# interface wlan0 # might be different interface - change it if needed
+#static ip_address= 192.168.43.213/24
+# static routers=192.168.43.1 # make sure the first 3 numbers are the same as wlan0 Inet #followed by .1
+#static domain_name_servers=192.168.43.1 8.8.8.8 fd51:42f8:caae:d29e::1 # not needed
+# IPv6 IP address
+
+If config
+
+	wlan0:	
+		Inet 192.168.43.213 netmask 255.255.255.0
+
+sudo apt install arp-scan # scan the network
+If not  then - sudo apt update 
+
+Test with
+Ping ‘static routers’ # no quotes - in this example it would be 192.168.43.1
+
+Might mess up on another network - in that case - just comment out the 3 lines you messed with
+
+Ping -c 1 IP address
