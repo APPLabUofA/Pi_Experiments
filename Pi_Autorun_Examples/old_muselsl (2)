@@ -1,0 +1,6 @@
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Muse_Connected.txt &
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Stop_EEG1.csv &
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Stop_EEG2.csv &
+@lxterminal -e sudo python /home/pi/research_experiments/Experiments/Pet_Therapy/Autorun/Connect_Muse.py &
+@lxterminal -e sudo python /home/pi/research_experiments/Experiments/Pet_Therapy/Autorun/Stream_Muse.py &
+@lxterminal -e sudo python /home/pi/research_experiments/Experiments/Pet_Therapy/Autorun/Experiment_Muse.py &

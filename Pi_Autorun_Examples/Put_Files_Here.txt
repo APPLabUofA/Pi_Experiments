@@ -1,0 +1,1 @@
+\home\pi\.config\lxsession\LXDE-pi

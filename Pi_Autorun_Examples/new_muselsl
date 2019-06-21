@@ -1,0 +1,13 @@
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Muse_Connected.txt &
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Stop_EEG1.csv &
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Stop_EEG2.csv &
+@lxterminal -e bash /home/pi/research_experiments/Experiments/Baseline_Stroke_Study/Autorun/launch_connect_muse.sh &
+@lxterminal -e bash /home/pi/research_experiments/Experiments/Baseline_Stroke_Study/Autorun/launch_stream_eeg.sh &
+@lxterminal -e bash /home/pi/research_experiments/Experiments/Baseline_Stroke_Study/Autorun/launch_stream_acc.sh &
+@lxterminal -e bash /home/pi/research_experiments/Experiments/Baseline_Stroke_Study/Autorun/launch_stream_gyro.sh &
+@lxterminal -e sudo python /home/pi/research_experiments/Experiments/Baseline_Stroke_Study/Autorun/Experiment_Muse_Updated.py &
+@lxterminal -e bash /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/launch_connect_muse.sh &
+@lxterminal -e bash /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/launch_stream_eeg.sh &
+@lxterminal -e bash /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/launch_stream_acc.sh &
+@lxterminal -e bash /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/launch_stream_gyro.sh &
+@lxterminal -e sudo python /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/Experiment_Muse_Updated.py &

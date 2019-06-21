@@ -1,0 +1,10 @@
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+@xscreensaver -no-splash
+point-rpi
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Muse_Shutdown.txt &
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Stop_EEG1.csv &
+@lxterminal -e sudo rm -r /home/pi/research_experiments/Stop_EEG2.csv &
+@lxterminal -e python /home/pi/research_experiments/Experiments/Baseline_Pet_Therapy/Autorun/Connect_Muse.py &
+@lxterminal -e python /home/pi/research_experiments/Experiments/Baseline_Pet_Therapy/Autorun/Stream_Muse.py &
+@lxterminal -e python /home/pi/research_experiments/Experiments/Baseline_Pet_Therapy/Autorun/Experiment_Muse.py &
