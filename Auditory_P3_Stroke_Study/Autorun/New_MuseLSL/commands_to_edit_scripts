@@ -1,0 +1,4 @@
+sudo nano /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/launch_connect_muse.sh
+sudo nano /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/launch_stream_eeg.sh
+sudo nano /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/launch_stream_acc.sh
+sudo nano /home/pi/research_experiments/Experiments/Auditory_P3_Stroke_Study/Autorun/launch_stream_gyro.sh

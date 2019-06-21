@@ -7,12 +7,18 @@ os.environ['SDL_VIDEODRIVER'] = 'dummy'
 import sys
 from random import randint
 from random import shuffle
-from datetime import datetime
-import numpy as np
-import pandas as pd
+import datetime
+import numpy
 import pygame
 import RPi.GPIO as GPIO
 from pylsl import StreamInfo, StreamOutlet, local_clock
+
+###variables for filenames and save locations###
+partnum = '001'
+device = 'Amp'
+filename = 'Auditory_P3_Bike'
+exp_loc = 'Auditory_P3_Bike'
+date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
 ###create our stream variables###
 info = StreamInfo('Markers', 'Markers', 1, 0, 'int32', 'myuidw43536')
@@ -27,24 +33,12 @@ pygame.init()
 pygame.display.set_mode((1,1))
 pygame.mixer.init()
 
-###variables for filenames and save locations###
-partnum = '001'
-device = 'Muse'
-filename = 'Auditory_P3_Stroke_Study'
-exp_loc = 'Auditory_P3_Stroke_Study'
-date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-ready_tone= '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/2000hz_tone.wav'
-
 ###create variables for our sounds###
 standard = '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/low_tone.wav'
 target = '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/high_tone.wav'
 
 ###setup pins for triggers###
 GPIO.setup([4,17,27,22,5,6,13,19],GPIO.OUT)
-
-###setup pin for push button###
-pin = 26
-GPIO.setup(pin,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 
 ###Setup our function to send triggers###
 ###trig_type is either 's' or 'r'###
@@ -70,38 +64,38 @@ def pi2trig(trig_num):
     return trig_pins
 
 ###setup variables to record times###
-exp_start = []
+vid_time  = []
 trig_time   = []
 trig_type = []
 delay_length  = []
-resp_time = []
 
 ###set triggers to 0###
 GPIO.output(pi2trig(255),0)
 
-###play tones to indicate the experiment is ready###
-pygame.mixer.music.load(ready_tone)
-for i_tone in range(2):
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy() == True:
-        continue
-
 ###define the number of trials, and tones per trial###
-trials = 10
+trials = 20
 low_rate = 0.8
 high_rate = 0.2
-low_tone = np.zeros(int(trials*low_rate))
-high_tone = np.ones(int(trials*high_rate))
+low_tone = numpy.zeros(int(trials*low_rate))
+high_tone = numpy.ones(int(trials*high_rate))
 low_tone_list = low_tone.tolist()
 high_tone_list = high_tone.tolist()
 tones = low_tone_list + high_tone_list
 shuffle(tones)
 
+###wait to start experiment###
+key_pressed = 0
+pygame.event.clear()
+while key_pressed == 0:
+    event = pygame.event.wait()
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+            key_pressed = 1
 
-###wait for button press to start experiment###
-GPIO.wait_for_edge(26,GPIO.RISING)
-
-exp_start = time.time()
+vid_start = time.time()
 timestamp = local_clock()
 outlet.push_sample([3], timestamp)
 GPIO.output(pi2trig(3),1)
@@ -110,51 +104,34 @@ GPIO.output(pi2trig(3),0)
 
 for i_tone in range(len(tones)):
     ###wait for a random amount of time between tones###
-    delay = ((randint(0,500))*0.001)+1.50
+    delay = ((randint(0,500))*0.001)+1.00
     delay_length.append(delay)
     if tones[i_tone] == 0:#low tone
         pygame.mixer.music.load(standard)
         trig_type.append(1)
-        ###send triggers###
-        timestamp = local_clock()
-        outlet.push_sample([1], timestamp)
-        GPIO.output(pi2trig(1),1)
-        trig_time.append(time.time() - exp_start) 
     elif tones[i_tone] == 1:#high tone
         pygame.mixer.music.load(target)
         trig_type.append(2)
-        ###send triggers###
-        timestamp = local_clock()
-        outlet.push_sample([2], timestamp)
-        GPIO.output(pi2trig(2),1)
-        trig_time.append(time.time() - exp_start) 
-    ###playback tone###
+    ###playback tone and send trigger###
+    trig_time.append(time.time() - vid_start)
+    timestamp = local_clock()
+    outlet.push_sample([1], timestamp)
+    trig_time.append(time.time() - vid_start)
+    GPIO.output(pi2trig(tones[i_tone]+1),1)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
         continue
-    ###set the trigger back to zero###
+    ###wait for a random amount of time and set the trigger back to zero###
     GPIO.output(pi2trig(255),0)
-    ###now try and get a response###
-    start_resp = time.time()
-    edge_detect = GPIO.wait_for_edge(pin,GPIO.RISING, timeout = int(delay * 1000))
-    if edge_detect is not None:  
-        resp = time.time() - start_resp
-        resp_time.append(resp)
-        GPIO.output(pi2trig(int(tones[i_tone])+3),1)
-        time.sleep(delay - resp)
-    else:
-        GPIO.output(pi2trig(int(tones[i_tone])+5),1)
-        resp_time.append(0)
-    time.sleep(0.01)
-    GPIO.output(pi2trig(255),0)
-    time.sleep(0.01)
+    time.sleep(delay)
 
 ###show the end screen###
 timestamp = local_clock()
-outlet.push_sample([5], timestamp)
-GPIO.output(pi2trig(5),1)
-time.sleep(1.0)
-GPIO.output(pi2trig(5),0)
+outlet.push_sample([4], timestamp)
+GPIO.output(pi2trig(4),1)
+time.sleep(0.5)
+pygame.mouse.set_visible(0)
+GPIO.output(pi2trig(4),0)
 
 ###save times###
 while os.path.isfile("/home/pi/research_experiments/Experiments/" + exp_loc + "/Data/" + device + "/LSL_Trial_Information/" + partnum + "_" + filename + ".csv") == True:
@@ -165,17 +142,17 @@ while os.path.isfile("/home/pi/research_experiments/Experiments/" + exp_loc + "/
 
 filename_part = ("/home/pi/research_experiments/Experiments/" + exp_loc + "/Data/" + device + "/LSL_Trial_Information/" + partnum + "_" + filename + ".csv")
 
-the_list = [date, trig_type,trig_time,delay_length,resp_time]
+the_list = [date, trig_type,trig_time,delay_length]
 df_list = pd.DataFrame({i:pd.Series(value) for i, value in enumerate(the_list)})
-df_list.columns = ['Date','Trigger_Type','Trigger_Onset_Time','Trial_Delay','Response_Time']
+df_list.columns = ['Date','Trigger_Type','Trigger_Onset_Time','Trial_Delay']
 df_list.to_csv(filename_part)
 
 pygame.display.quit()
 pygame.quit()
 GPIO.cleanup()
 
-if os.path.isfile("/home/pi/research_experiments/Stop_EEG2.csv") == True:
-    os.remove("/home/pi/research_experiments/Muse_Continue.txt")
-    os.remove("/home/pi/research_experiments/Stop_EEG2.csv")
-    os.remove("/home/pi/research_experiments/Stop_EEG1.csv")
+if os.path.isfile("/home/pi/research_experiments/Stop_EEG2.csv") == True:   
     time.sleep(5)
+    os.remove("/home/pi/research_experiments/Stop_EEG2.csv")
+    time.sleep(5)
+    os.remove("/home/pi/research_experiments/Stop_EEG1.csv")

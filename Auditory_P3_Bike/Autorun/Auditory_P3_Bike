@@ -1,0 +1,5 @@
+sleep 10
+cd /home/pi/research_experiments/Experiments/Auditory_P3_Bike/Task
+sudo python Auditory_P3_Bike.py
+sleep 5
+sudo shutdown -h now

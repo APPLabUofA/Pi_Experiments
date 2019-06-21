@@ -30,7 +30,7 @@ pygame.mixer.init()
 ###variables for filenames and save locations###
 partnum = '001'
 device = 'Muse'
-filename = 'Auditory_P3_Stroke_Study'
+filename = 'Auditory_P3_Stroke_Study_Updated'
 exp_loc = 'Auditory_P3_Stroke_Study'
 date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 ready_tone= '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/2000hz_tone.wav'
@@ -87,7 +87,7 @@ for i_tone in range(2):
         continue
 
 ###define the number of trials, and tones per trial###
-trials = 10
+trials = 20
 low_rate = 0.8
 high_rate = 0.2
 low_tone = np.zeros(int(trials*low_rate))
@@ -99,10 +99,10 @@ shuffle(tones)
 
 
 ###wait for button press to start experiment###
-GPIO.wait_for_edge(26,GPIO.RISING)
+##GPIO.wait_for_edge(26,GPIO.RISING)
 
 exp_start = time.time()
-timestamp = local_clock()
+timestamp = time.time()
 outlet.push_sample([3], timestamp)
 GPIO.output(pi2trig(3),1)
 time.sleep(1)
@@ -116,7 +116,7 @@ for i_tone in range(len(tones)):
         pygame.mixer.music.load(standard)
         trig_type.append(1)
         ###send triggers###
-        timestamp = local_clock()
+        timestamp = time.time()
         outlet.push_sample([1], timestamp)
         GPIO.output(pi2trig(1),1)
         trig_time.append(time.time() - exp_start) 
@@ -124,7 +124,7 @@ for i_tone in range(len(tones)):
         pygame.mixer.music.load(target)
         trig_type.append(2)
         ###send triggers###
-        timestamp = local_clock()
+        timestamp = time.time()
         outlet.push_sample([2], timestamp)
         GPIO.output(pi2trig(2),1)
         trig_time.append(time.time() - exp_start) 
@@ -150,7 +150,7 @@ for i_tone in range(len(tones)):
     time.sleep(0.01)
 
 ###show the end screen###
-timestamp = local_clock()
+timestamp = time.time()
 outlet.push_sample([5], timestamp)
 GPIO.output(pi2trig(5),1)
 time.sleep(1.0)
