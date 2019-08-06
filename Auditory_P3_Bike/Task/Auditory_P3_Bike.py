@@ -32,10 +32,10 @@ standard = '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Od
 target = '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/high_tone.wav'
 
 ###setup pins for triggers###
-GPIO.setup([4,17,27,22,5,6,13,19],GPIO.OUT)
+GPIO.setup([4,17,27,22,5,6,13,19,18],GPIO.OUT)
 
-### setup pin for Camera Sync LED
-##GPIO.setup(18,GPIO.OUT)
+###make sure LED is off###
+GPIO.output(18,0)
 
 ###setup pin for push button###
 pin = 26
@@ -63,17 +63,8 @@ def pi2trig(trig_num):
             trig_pos = trig_pos + 1
     
     return trig_pins
-
-##def GoPro_LED_Flash(flash_num):
-##    for flash in range(flash_num):
-##        GPIO.output(18,GPIO.HIGH)
-##        GPIO.output(pi2trig(9),1)
-##        time.sleep(0.1)
-##        GPIO.output(pi2trig(255),0)
-##        time.sleep(0.1)
         
 ###setup variables to record times###
-vid_time  = []
 trig_time   = []
 trig_type = []
 delay_length  = []
@@ -107,20 +98,29 @@ GPIO.wait_for_edge(pin,GPIO.RISING)
 time.sleep(1)
 GPIO.wait_for_edge(pin,GPIO.RISING)
 
+###play countdown###
 pygame.mixer.music.load('/home/pi/Experiments/Sounds/countdown_10.wav')
 GPIO.output(pi2trig(9),1)
 pygame.mixer.music.play()
+time.sleep(0.1)
+GPIO.output(pi2trig(255),0)
+###flash LED 10 times, with a random delay between each flash###
+for i_flash in range(24):
+    GPIO.output(18,1)
+    GPIO.output(pi2trig(10),1)
+    time.sleep(0.1)
+    GPIO.output(pi2trig(10),0)
+    GPIO.output(18,0)
+    time.sleep(randint(100,500)*0.001)
 while pygame.mixer.music.get_busy() == True:
     continue
-GPIO.output(pi2trig(255),0)
-time.sleep(0.5)
 
-vid_start = time.time()
+###start experiment###
+start_exp = time.time()
 GPIO.output(pi2trig(5),1)
 time.sleep(0.5)
 GPIO.output(pi2trig(255),0)
 time.sleep(0.5)
-
 
 ##GoPro_LED_Flash(10)
 for i_tone in range(len(tones)):
@@ -134,7 +134,7 @@ for i_tone in range(len(tones)):
         pygame.mixer.music.load(target)
         trig_type.append(2)
     ###playback tone and send trigger### 
-    trig_time.append(time.time() - vid_start)
+    trig_time.append(time.time() - start_exp)
     GPIO.output(pi2trig(int(tones[i_tone])+1),1)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
@@ -178,7 +178,16 @@ df_list.to_csv(filename_part)
 
 pygame.mixer.music.load('/home/pi/Experiments/Sounds/shut_down.wav')
 GPIO.output(pi2trig(8),1)
+time.sleep(0.1)
 pygame.mixer.music.play()
+###flash LED 10 times, with a random delay between each flash###
+for i_flash in range(24):
+    GPIO.output(pi2trig(11),1)
+    GPIO.output(18,1)
+    time.sleep(0.1)
+    GPIO.output(pi2trig(11),0)
+    GPIO.output(18,0)
+    time.sleep(randint(100,500)*0.001)
 while pygame.mixer.music.get_busy() == True:
     continue
 
