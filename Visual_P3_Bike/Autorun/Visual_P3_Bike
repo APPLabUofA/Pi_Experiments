@@ -1,0 +1,5 @@
+sleep 10
+cd /home/pi/research_experiments/Experiments/Visual_P3_Bike/Task
+sudo python3 Visual_P3_Bike.py
+sleep 5
+sudo shutdown -h now
