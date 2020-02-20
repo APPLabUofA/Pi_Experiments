@@ -1,0 +1,5 @@
+sudo python /home/pi/Experiments/Subliminal_Shutter/Task/subliminal_shutter.py
+
+sudo python /home/pi/Experiments/Subliminal_Shutter/Task/subliminal_shutter_thresh.py
+
+sudo python /home/pi/Experiments/Subliminal_Shutter/Task/test_pwm.py
