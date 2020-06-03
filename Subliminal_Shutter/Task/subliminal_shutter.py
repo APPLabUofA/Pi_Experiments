@@ -31,14 +31,14 @@ pin = 26
 GPIO.setup(pin,GPIO.IN,pull_up_down=GPIO.PUD_UP)
 
 ###number of trials###
-trials = 9
+trials = 60
 max_thresh_trials = 50
 
 ###specify when a break will occur%%%
 breaks = [int(trials*(1/3.0))-1,int(trials*(2/3.0))-1]
 
 ###determine which duty cycles we will use for the three conditions###
-vis_dc = 15
+vis_dc = 50
 invis_dc = 0.0
 
 ###setup some variables for thresholding###

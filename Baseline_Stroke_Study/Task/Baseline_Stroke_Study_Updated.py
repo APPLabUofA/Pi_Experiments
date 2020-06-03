@@ -1,11 +1,3 @@
-###trigger info###
-##1 = start of experiment
-##2 = start of first block
-##3 = end of first block
-##4 = start of second block
-##5 = end of second block
-##6 = end of experiment
-
 import time
 import os
 
@@ -50,11 +42,7 @@ tone= '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball
 ready_tone= '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/2000hz_tone.wav'
 
 ###setup pins for triggers###
-GPIO.setup([4,17,27,22,5,6,13,19],GPIO.OUT)
-
-###setup pin for push button###
-pin = 26
-GPIO.setup(pin,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+GPIO.setup([4,17,27,22,5,6,13,19,24],GPIO.OUT)
 
 ###Setup our function to send triggers###
 ###trig_type is either 's' or 'r'###
@@ -94,13 +82,20 @@ for i_tone in range(2):
         continue
 
 ###wait for button press to start experiment###
-##GPIO.wait_for_edge(26,GPIO.RISING)
-##time.sleep(0.1)
-##GPIO.wait_for_edge(26,GPIO.RISING)
+key_pressed = 0
+pygame.event.clear()
+while key_pressed == 0:
+    event = pygame.event.wait()
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+            key_pressed = 1
 
 ###send triggers###
 exp_start = time.time()
-timestamp = time.time()
+timestamp = local_clock()
 outlet.push_sample([1], timestamp)
 GPIO.output(pi2trig(1),1)
 time.sleep(1)
@@ -116,7 +111,7 @@ for i_tone in range(3):
 
 ###send triggers###
 trig_time.append(time.time() - exp_start)
-timestamp = time.time()
+timestamp = local_clock()
 outlet.push_sample([2], timestamp)
 GPIO.output(pi2trig(2),1)
 time.sleep(1)
@@ -127,24 +122,13 @@ time.sleep(baseline_length)
 
 ###send triggers###
 trig_time.append(time.time() - exp_start)
-timestamp = time.time()
+timestamp = local_clock()
 outlet.push_sample([3], timestamp)
 GPIO.output(pi2trig(3),1)
 time.sleep(1)
 GPIO.output(pi2trig(3),0)
 
-###now play the tones again to indicate the end of the first segment###
-pygame.mixer.music.load(tone)
-for i_tone in range(3):
-    pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy() == True:
-        continue
-    time.sleep(0.1)
-
-###wait for button press to start the second block###
-##GPIO.wait_for_edge(26,GPIO.RISING)
-
-###now play the tones again to indicate the start of the second block###
+###now play the tones again to indicate the end of the first segment and the beginning of the next###
 pygame.mixer.music.load(tone)
 for i_tone in range(3):
     pygame.mixer.music.play()
@@ -154,7 +138,7 @@ for i_tone in range(3):
 
 ###send triggers###
 trig_time.append(time.time() - exp_start)
-timestamp = time.time()
+timestamp = local_clock()
 outlet.push_sample([4], timestamp)
 GPIO.output(pi2trig(4),1)
 time.sleep(1)
@@ -165,7 +149,7 @@ time.sleep(baseline_length)
 
 ###send triggers###
 trig_time.append(time.time() - exp_start)
-timestamp = time.time()
+timestamp = local_clock()
 outlet.push_sample([5], timestamp)
 GPIO.output(pi2trig(5),1)
 time.sleep(1)
@@ -180,7 +164,7 @@ for i_tone in range(3):
     time.sleep(0.1)
 
 ###send triggers###
-timestamp = time.time()
+timestamp = local_clock()
 outlet.push_sample([6], timestamp)
 GPIO.output(pi2trig(6),1)
 time.sleep(1)

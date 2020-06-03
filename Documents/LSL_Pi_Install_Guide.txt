@@ -1,0 +1,154 @@
+#####As of Dec 2018, here is a guide to get MuseLSL and the Muse working with the Pi 3
+
+#####Make sure you have enough memory on the SD card, or else the Pi will not boot once restarted
+#####Having said that, be sure to restart once updates and packages are installed
+
+
+A)
+
+#####If you want to run the newest version of MuseLSL (as of April 25, 2019), follow the steps below
+#####Note that the newest version requires Python 3
+
+#####Open a new terminal window and enter the following command:
+
+sudo pip3 install muselsl
+
+#####and this should install almost everything you need (it will take quite a long time)
+#####Once everything is installed you'll need to downgrade the version the pygatt that's installed
+#####enter the following commands:
+
+sudo pip3 uninstall pygatt
+sudo pip3 install pygatt==3.1.1
+
+B)
+
+#####If you want to install packages directly without using a virtual environment, open a terminal window and follow the steps below:
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo pip install pygatt==3.1.1
+sudo pip install pylsl==1.10.5
+sudo pip install mne==0.17.0
+sudo apt-get install libblas-dev
+sudo apt-get install liblapack-dev
+sudo apt-get install python-dev
+sudo apt-get install libatlas-base-dev
+sudo apt-get install gfortran
+sudo pip install setuptools==33.1.1
+sudo pip install scipy==0.18.1
+sudo pip install matplotlib==2.0.0
+sudo pip install bitstring==3.1.5
+sudo pip install seaborn==0.7.1
+sudo pip install pexpect==4.2.1
+sudo pip install vispy==0.4.0
+sudo pip install psychopy==1.83.4
+sudo pip install sklearn==0.0
+sudo apt-get clean
+sudo apt-get autoremove
+
+#####once you have all the necessary packages installed (with or without a virtual environment)
+#####Also run the below command in a terminal window to make the bluetooth app run with admin permissions
+
+sudo setcap 'cap_net_raw,cap_net_admin+eip' `which hcitool`
+
+#####Within the "Experiments" folder is another folder called "Packages"
+#####"Packages" contains an older version of MuseLSL that will work with the Raspberry Pi
+#####Newer versions of MuseLSL currently do not work properly with the Raspberry Pi and some of the Pi-specific packages
+
+#####You will also need to download and add a file needed for pylsl
+
+wget ftp://sccn.ucsd.edu/pub/software/LSL/SDK/liblsl-C-C++-1.11.zip
+unzip liblsl-C-C++-1.11.zip
+sudo cp liblsl-bcm2708.so /usr/local/lib/python2.7/dist-packages/pylsl/liblsl32.so
+
+#####After following the above instructions, lsl and the Muse should now work with the built-in bluetooth of the Pi 3
+
+
+C)
+
+#####if you want to install miniconda (with Python 2) to use virtual environments, follow these steps:
+
+wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-armv7l.sh
+md5sum Miniconda-latest-Linux-armv7l.sh
+bash Miniconda-latest-Linux-armv7l.sh
+sudo reboot
+
+#####open a terminal and enter the following:
+
+sudo nano /etc/apt/sources.list
+
+#####uncomment the third line and then save the file ('Ctrl X' > 'y' > 'Enter')
+#####now run the following in the same terminal:
+
+sudo apt-get update
+sudo apt-get build-dep python-pygame
+
+#####instructions on using anaconda/miniconda environments can be found here:
+
+https://conda.io/docs/user-guide/tasks/manage-environments.html
+
+#####the exmaple below will create a virtual environment called 'eeg_experiments'
+#####for the Raspberry Pi, we need to specify which version of python we want to use and 3.4.3 is the current version for miniconda on the Pi
+
+conda create --name eeg_experiments python==2.7.13
+
+#####now open a terminal (without activating your environment) and enter the following commands:
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install libblas-dev
+sudo apt-get install liblapack-dev
+sudo apt-get install python-dev
+sudo apt-get install libatlas-base-dev
+sudo apt-get install gfortran
+conda config --add channels rpi
+sudo apt-get clean
+sudo apt-get autoremove
+
+#####if you are using a virtual environment open a terminal window and follow the steps below (these assume you are using miniconda for creating virtual environments).
+#####be sure to create and activate your environment (source activate eeg_experiments) before running these commands:
+
+
+pip install pygatt==3.1.1
+pip install pylsl==1.10.5
+pip install mne==0.17.0
+conda install scipy==0.18.1
+conda install pkg-config
+conda install freetype==2.7
+pip install matplotlib==2.0.0 (might take some time)
+pip install bitstring==3.1.5
+pip install seaborn==0.7.1 (might take some time)
+conda install pexpect==4.2.1
+pip install vispy==0.4.0
+pip install sklearn==0.0 (might take some time)
+pip install pygame==1.9.3 (might take some time)
+pip install rpi.gpio
+#####
+
+
+D)
+#####once you have all the necessary packages installed (with or without a virtual environment)
+#####Also run the below command in a terminal window to make the bluetooth app run with admin permissions
+
+sudo setcap 'cap_net_raw,cap_net_admin+eip' `which hcitool`
+
+#####Within the "Experiments" folder is another folder called "Packages"
+#####"Packages" contains an older version of MuseLSL that will work with the Raspberry Pi
+#####Newer versions of MuseLSL currently do not work properly with the Raspberry Pi and some of the Pi-specific packages
+
+#####You will also need to download and add a file needed for pylsl
+
+wget ftp://sccn.ucsd.edu/pub/software/LSL/SDK/liblsl-C-C++-1.11.zip
+unzip liblsl-C-C++-1.11.zip
+
+######if using the old version of Muselsl, which uses python 2
+
+sudo cp liblsl-bcm2708.so /home/pi/miniconda/envs/eeg_experiments/lib/python2.7/site-packages/pylsl/liblsl32.so
+
+######if using the newest version of MuseLSL which uses python 3. Note that the version number of python may need to be changed to whatever your current version is
+
+sudo cp liblsl-bcm2708.so /home/pi/miniconda/envs/eeg_experiments/lib/python3.5/site-packages/pylsl/liblsl32.so
+
+sudo cp liblsl-bcm2708.so /home/pi/.virtualenvs/muse_experiments_p373/lib/python3.7/site-packages/pylsl/liblsl32.so
+
+#####After following the above instructions, lsl and the Muse should now work with the built-in bluetooth of the Pi 3

@@ -1,0 +1,37 @@
+When you edit or create autostart file in your user space like
+
+~/.config/lxsession/LXDE-pi/autostart
+then, this file will override global lxsession autostart file in
+
+/etc/xdg/lxsession/LXDE-pi/autostart
+so you should copy everything from global file to your newly created file. By this way , after reboot you won't get a blank screen running openbox.
+
+So, your file should contain
+
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+@xscreensaver -no-splash
+point-rpi
+And then add your necessary startup items at the bottom like
+
+@lxterminal
+
+As an example, to open a python terminal window add the following line
+
+@lxterminal -e python3
+
+might be an idea to combine both experiments into one script, and then check for a button press
+
+one press will start the baseline first, the other will start the oddball first
+
+OR, the baseline task creates a file once finished and the oddball tasks deletes this file
+
+the script could check for this file and skip the baseline task if needed
+
+to run python files from within python, enter the following
+
+import os
+os.system('python /home/pi/research_experiments/Experiments/Packages/muse-lsl-master/muse-lsl-connect.py --name Muse-1E65')
+
+
+this will run the script to connect the muse ot the pi

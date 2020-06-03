@@ -40,11 +40,7 @@ standard = '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Od
 target = '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/high_tone.wav'
 
 ###setup pins for triggers###
-GPIO.setup([4,17,27,22,5,6,13,19],GPIO.OUT)
-
-###setup pin for push button###
-pin = 26
-GPIO.setup(pin,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+GPIO.setup([4,17,27,22,5,6,13,19,24],GPIO.OUT)
 
 ###Setup our function to send triggers###
 ###trig_type is either 's' or 'r'###
@@ -74,7 +70,6 @@ exp_start = []
 trig_time   = []
 trig_type = []
 delay_length  = []
-resp_time = []
 
 ###set triggers to 0###
 GPIO.output(pi2trig(255),0)
@@ -99,7 +94,16 @@ shuffle(tones)
 
 
 ###wait for button press to start experiment###
-GPIO.wait_for_edge(26,GPIO.RISING)
+key_pressed = 0
+pygame.event.clear()
+while key_pressed == 0:
+    event = pygame.event.wait()
+    if event.type == pygame.QUIT:
+        pygame.quit()
+        sys.exit()
+    elif event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+            key_pressed = 1
 
 exp_start = time.time()
 timestamp = local_clock()
@@ -110,7 +114,7 @@ GPIO.output(pi2trig(3),0)
 
 for i_tone in range(len(tones)):
     ###wait for a random amount of time between tones###
-    delay = ((randint(0,500))*0.001)+1.50
+    delay = ((randint(0,500))*0.001)+1.00
     delay_length.append(delay)
     if tones[i_tone] == 0:#low tone
         pygame.mixer.music.load(standard)
@@ -132,22 +136,9 @@ for i_tone in range(len(tones)):
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy() == True:
         continue
-    ###set the trigger back to zero###
+    ###wait for a random amount of time and set the trigger back to zero###
     GPIO.output(pi2trig(255),0)
-    ###now try and get a response###
-    start_resp = time.time()
-    edge_detect = GPIO.wait_for_edge(pin,GPIO.RISING, timeout = int(delay * 1000))
-    if edge_detect is not None:  
-        resp = time.time() - start_resp
-        resp_time.append(resp)
-        GPIO.output(pi2trig(int(tones[i_tone])+3),1)
-        time.sleep(delay - resp)
-    else:
-        GPIO.output(pi2trig(int(tones[i_tone])+5),1)
-        resp_time.append(0)
-    time.sleep(0.01)
-    GPIO.output(pi2trig(255),0)
-    time.sleep(0.01)
+    time.sleep(delay)
 
 ###show the end screen###
 timestamp = local_clock()
@@ -165,9 +156,9 @@ while os.path.isfile("/home/pi/research_experiments/Experiments/" + exp_loc + "/
 
 filename_part = ("/home/pi/research_experiments/Experiments/" + exp_loc + "/Data/" + device + "/LSL_Trial_Information/" + partnum + "_" + filename + ".csv")
 
-the_list = [date, trig_type,trig_time,delay_length,resp_time]
+the_list = [date, trig_type,trig_time,delay_length]
 df_list = pd.DataFrame({i:pd.Series(value) for i, value in enumerate(the_list)})
-df_list.columns = ['Date','Trigger_Type','Trigger_Onset_Time','Trial_Delay','Response_Time']
+df_list.columns = ['Date','Trigger_Type','Trigger_Onset_Time','Trial_Delay']
 df_list.to_csv(filename_part)
 
 pygame.display.quit()

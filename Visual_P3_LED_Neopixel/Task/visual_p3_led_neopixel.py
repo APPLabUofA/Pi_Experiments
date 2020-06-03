@@ -69,7 +69,7 @@ date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 pixels = neopixel.NeoPixel(pin_out, led_num, brightness = brightness, auto_write = True)
 
 ###define the number of trials, and tones per trial###
-trials = 200
+trials = 10
 low_rate = 0.8
 high_rate = 0.2
 low_tone = np.zeros(int(trials*low_rate))

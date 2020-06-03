@@ -1,0 +1,40 @@
+###instal the correct software###
+
+sudo pip3 install virtualenv virtualenvwrapper
+
+###add the followinh to ~/.profile###
+
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
+source ~/.profile
+
+###initialise an environment###
+
+mkvirtualenv name -p /usr/bin/python3
+
+###activate a given environment###
+
+workon env
+
+###alternatively, you can source/activate an environment this way###
+
+source /env/bin/activate
+
+###access envs directory###
+
+ls $WORKON_HOME
+
+###look at currently installed packages for the environment###
+
+pip freeze
+lssitepackages
+
+###export a list of the installed packages###
+
+pip freeze > requirements.txt
+
+###install packages in the new environment from the text file###
+
+sudo pip install -r requirements.txt
+

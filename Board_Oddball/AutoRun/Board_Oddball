@@ -1,5 +1,0 @@
-sleep 10
-cd /home/pi/research_experiments/Experiments/Board_Oddball/Task
-sudo python Board_Oddball_Pygame_4.py
-sleep 1
-sudo shutdown -h now
