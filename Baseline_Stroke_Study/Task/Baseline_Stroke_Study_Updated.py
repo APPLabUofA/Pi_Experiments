@@ -38,8 +38,8 @@ date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 baseline_length = 1 ###3 minutes in seconds
 
 ###create variables for our sounds###
-tone= '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/1000hz_tone.wav'
-ready_tone= '/home/pi/research_experiments/Experiments/Stimuli/Sounds/Auditory_Oddball/2000hz_tone.wav'
+tone= '/home/pi/Pi_Experiments/Stimuli/Sounds/Auditory_Oddball/1000hz_tone.wav'
+ready_tone= '/home/pi/Pi_Experiments/Stimuli/Sounds/Auditory_Oddball/2000hz_tone.wav'
 
 ###setup pins for triggers###
 GPIO.setup([4,17,27,22,5,6,13,19,24],GPIO.OUT)
@@ -171,13 +171,17 @@ time.sleep(1)
 GPIO.output(pi2trig(6),0)
 
 ###save times###
-while os.path.isfile("/home/pi/research_experiments/Experiments/" + exp_loc + "/Data/" + device + "/LSL_Trial_Information/" + partnum + "_" + filename + ".csv") == True:
+directory = os.path.dirname("/home/pi/Pi_Experiments/" + exp_loc + "/Data/" + device + "/Trial_Information/")
+if not os.path.exists(directory):
+    os.makedirs(directory)
+        
+while os.path.isfile("/home/pi/Pi_Experiments/" + exp_loc + "/Data/" + device + "/Trial_Information/" + partnum + "_" + filename + ".csv") == True:
     if int(partnum) >=10:
         partnum = "0" + str(int(partnum) + 1)
     else:
         partnum = "00" + str(int(partnum) + 1)
 
-filename_part = ("/home/pi/research_experiments/Experiments/" + exp_loc + "/Data/" + device + "/LSL_Trial_Information/" + partnum + "_" + filename + ".csv")
+filename_part = ("/home/pi/Pi_Experiments/" + exp_loc + "/Data/" + device + "/Trial_Information/" + partnum + "_" + filename + ".csv")
 
 the_list = [trig_time]
 df_list = pd.DataFrame({i:pd.Series(value) for i, value in enumerate(the_list)})
@@ -188,9 +192,8 @@ pygame.display.quit()
 pygame.quit()
 GPIO.cleanup()
 
-if os.path.isfile("/home/pi/research_experiments/Stop_EEG2.csv") == True:
-    os.remove("/home/pi/research_experiments/Stop_EEG2.csv")
-    os.remove("/home/pi/research_experiments/Stop_EEG1.csv")
-    time.sleep(0.5)
-    os.mknod("/home/pi/research_experiments/Muse_Continue.txt")
-    time.sleep(5)
+if os.path.isfile("/home/pi/Pi_Experiments/Stop_EEG2.csv") == True:
+    os.remove("/home/pi/Pi_Experiments/Stop_EEG2.csv")
+    time.sleep(2)
+    os.remove("/home/pi/Pi_Experiments/Stop_EEG1.csv")
+    time.sleep(2)

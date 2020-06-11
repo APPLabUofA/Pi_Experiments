@@ -1,0 +1,43 @@
+###Open a terminal window and run the commands in order###
+
+###update and install idle###
+sudo apt-get update
+sudo apt-get install idle
+
+###install packages for neopixel LEDs###
+sudo pip3 install RPI.GPIO
+sudo pip3 install adafruit-blinka==5.0.1
+sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel==4.0.0
+sudo python3 -m pip install --force-reinstall adafruit-blinka==5.0.1
+sudo pip3 install pandas
+
+###install pigpio to better control PWM for shutter glasses###
+wget https://github.com/joan2937/pigpio/archive/master.zip
+unzip master.zip
+cd pigpio-master
+make
+sudo make install
+
+###install idlex and virtualenv###
+sudo pip3 install idlex
+sudo pip3 install virtualenv
+
+*at this point, make a folder in /home/pi/ called Virtual_Envs*
+
+###create our virtual environment for muselsl###
+cd Virtual_Envs
+virtualenv muse_exp -p /usr/bin/python3.7
+cd muse_exp
+source bin/activate
+pip install muselsl
+pip uninstall pygatt
+pip install pygatt 3.1.1
+pip install pygame
+pip install RPI.GPIO
+
+###need to replace a file with one made for ARM processors###
+wget ftp://sccn.ucsd.edu/pub/software/LSL/SDK/liblsl-C-C++-1.11.zip
+unzip liblsl-C-C++-1.11.zip
+sudo cp liblsl-bcm2708.so /home/pi/Virtual_Envs/muse_exp/lib/python3.7/site-packages/pylsl/liblsl32.so
+sudo apt-get install libatlas-base-dev
+sudo setcap 'cap_net_raw,cap_net_admin+eip' `which hcitool`

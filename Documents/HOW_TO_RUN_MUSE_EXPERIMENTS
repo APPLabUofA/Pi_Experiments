@@ -1,0 +1,26 @@
+###Open Three Terminal Windows###
+
+###Terminal 1###
+
+cd Virtual_Envs/muse_exp
+source bin/activate
+muselsl stream --name Muse-E61A
+
+
+###Terminal 2###
+
+cd Virtual_Envs/muse_exp
+source bin/activate
+muselsl record --type eeg --exp Baseline_Stroke_Study
+
+
+###Terminal 3###
+
+cd Virtual_Envs/muse_exp
+source bin/activate
+python /home/pi/Pi_Experiments/Baseline_Stroke_Study/Task/Baseline_Stroke_Study_Updated.py
+
+
+###Stop_EEG1.csv and Stop_EEG2.csv will be created in /home/pi/Pi_Experiments###
+###be sure to delete these, delete 2 first, wait for a few seconds, then delete 1###
+###probably best to have the experiment file do this automatically###

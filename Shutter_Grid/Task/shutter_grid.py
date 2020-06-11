@@ -29,8 +29,8 @@ pygame.display.init()
 GPIO.setup([4,17,27,22,5,6,13,19],GPIO.OUT)
 
 ###setup pins for each LCD###
-lcd_freq = 17.0
-dc = 50.0 * 10000
+lcd_freq = 17
+dc = 50 * 10000
 
 ###setup pin for push button###
 pin = 26
@@ -44,7 +44,7 @@ resp_type = []
 face_num = []
 
 ###audio file location###
-tone = '/home/pi/Experiments/Stimuli/Sounds/Auditory_Oddball/low_tone.wav'
+tone = '/home/pi/Pi_Experiments/Stimuli/Sounds/Auditory_Oddball/low_tone.wav'
 
 ###setup the display screen and fixation###
 pygame.mouse.set_visible(0)

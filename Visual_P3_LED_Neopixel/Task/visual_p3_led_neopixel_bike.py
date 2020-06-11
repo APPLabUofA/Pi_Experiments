@@ -73,7 +73,7 @@ date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 pixels = neopixel.NeoPixel(pin_out, led_num, brightness = brightness, auto_write = True)
 
 ###define the number of trials, and tones per trial###
-trials = 250
+trials = 20
 low_rate = 0.8
 high_rate = 0.2
 low_tone = np.zeros(int(trials*low_rate))
@@ -98,7 +98,7 @@ time.sleep(1)
 
 ###wait for button press to start experiment###
 time.sleep(1)
-GPIO.wait_for_edge(21,GPIO.RISING)
+##GPIO.wait_for_edge(21,GPIO.RISING)
 time.sleep(1)
 start_exp = time.time()
 for i_blink in range(25):
@@ -169,13 +169,17 @@ for i_blink in range(25):
     time.sleep(randint(100,500)*0.001)
 
 ###save times###
-while os.path.isfile("/home/pi/research_experiments/Experiments/" + exp_loc + "/Data/" + device + "/Trial_Information/" + partnum + "_" + filename + ".csv") == True:
+directory = os.path.dirname("/home/pi/Pi_Experiments/" + exp_loc + "/Data/" + device + "/Trial_Information/")
+if not os.path.exists(directory):
+    os.makedirs(directory)
+    
+while os.path.isfile("/home/pi/Pi_Experiments/" + exp_loc + "/Data/" + device + "/Trial_Information/" + partnum + "_" + filename + ".csv") == True:
     if int(partnum) >= 9:
         partnum = "0" + str(int(partnum) + 1)
     else:
         partnum = "00" + str(int(partnum) + 1)
 
-filename_part = ("/home/pi/research_experiments/Experiments/" + exp_loc + "/Data/" + device + "/Trial_Information/" + partnum + "_" + filename + ".csv")
+filename_part = ("/home/pi/Pi_Experiments/" + exp_loc + "/Data/" + device + "/Trial_Information/" + partnum + "_" + filename + ".csv")
 
 the_list = [date, trig_type,trig_time,delay_length,resp_time]
 df_list = pd.DataFrame({i:pd.Series(value) for i, value in enumerate(the_list)})
@@ -187,8 +191,8 @@ pygame.display.quit()
 pygame.quit()
 GPIO.cleanup()
 
-if os.path.isfile("/home/pi/research_experiments/Stop_EEG2.csv") == True:   
+if os.path.isfile("/home/pi/Pi_Experiments/Stop_EEG2.csv") == True:   
     time.sleep(5)
-    os.remove("/home/pi/research_experiments/Stop_EEG2.csv")
+    os.remove("/home/pi/Pi_Experiments/Stop_EEG2.csv")
     time.sleep(5)
-    os.remove("/home/pi/research_experiments/Stop_EEG1.csv")
+    os.remove("/home/pi/Pi_Experiments/Stop_EEG1.csv")
